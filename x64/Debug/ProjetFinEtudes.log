@@ -1,0 +1,2 @@
+﻿  Source.cpp
+C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(3,10): fatal error C1083: Impossible d'ouvrir le fichier include : 'opencv2/opencv.hpp' : No such file or directory

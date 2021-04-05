@@ -682,23 +682,191 @@ int homograpyPlane2()
 
 	return 0;
 }
+static void mouse_call(int event, int x, int y, int, void* param)
+{
+	if (event == cv::EVENT_LBUTTONDOWN) {
+		std::vector<cv::Point2f>* ptPtr = (std::vector<cv::Point2f>*)param;
+
+		ptPtr->push_back(cv::Point2f(x, y));
+
+
+	}
+}
+
+
+Mat computeHomography(const Mat& R_1to2, const Mat& tvec_1to2, const double d_inv, const Mat& normal)
+{
+	Mat homography = R_1to2 + d_inv * tvec_1to2 * normal.t();
+	return homography;
+}
+
+int findHomographyAndDisplay()
+{
+
+	Mat image1, image2, image3;
+	image1 = imread("goodPictures/carton_1_pos1.jpg");
+	image2 = imread("goodPictures/carton_1_pos2.jpg");
+	image3 = imread("goodPictures/carton_3_pos1.jpg");
+
+	//cropping image2
+	Mat ROI(image2, Rect(0, 120, 640, 360));
+	ROI.copyTo(image2);
+
+
+	//To make the homography and calculate dimensions of plan 1
+	//Because Homography is the same, you can keep the matrix for the boxes. Just initialize on the biggest Box.
+
+	vector<Point3f> p1Points;
+
+	vector<Point2f> img1_pts;
+	vector<Point2f> img2_pts;
+
+	img2_pts.push_back(Point2f(0, 0));
+
+	img2_pts.push_back(Point2f(59 * 4, 0));
+	img2_pts.push_back(Point2f(0, (29.5 - 4.5) * 4));
+	img2_pts.push_back(Point2f(59 * 4, (29.5 - 4.5) * 4));
+
+	namedWindow("select points");
+	setMouseCallback("select points", mouse_call, (void*)&img1_pts);
+
+	imshow("select points", image3);
+	waitKey();
+
+	cout << img1_pts;
+
+	for (int i = 0; i < img1_pts.size(); i++)
+	{
+		circle(image3, img1_pts[i], 3, Scalar(0, 255, 0), 2);
+	}
+
+	namedWindow("with points");
+	imshow("with points", image3);
+	waitKey();
+
+	FileStorage fs("out_camera_pos1_data.xml", FileStorage::READ);
+
+	if (fs.isOpened())
+	{
+		cout << "File is opened\n";
+	}
+	Mat cameraMatrix, distCoeffs;
+
+	fs["Camera_Matrix"] >> cameraMatrix;
+
+	cout << cameraMatrix << endl;
+
+	fs["Distortion_Coefficients"] >> distCoeffs;
+
+
+
+
+	vector<Point3f> objectPoints;
+	objectPoints.push_back(Point3f(0, 0, 0));
+	objectPoints.push_back(Point3f(39, 0, 0));
+	objectPoints.push_back(Point3f(0, 29.5, 0));
+	objectPoints.push_back(Point3f(39, 29.5, 0));
+
+	Mat rvec1, tvec1;
+	solvePnP(objectPoints, img1_pts, cameraMatrix, distCoeffs, rvec1, tvec1);
+	Mat rvec2, tvec2;
+	solvePnP(objectPoints, img2_pts, cameraMatrix, distCoeffs, rvec2, tvec2);
+
+	cout << "R : " << rvec1 << endl;
+	cout << "T : " << tvec1 << endl;
+
+	Mat R1, R2, R_1to2, tvec_1to2;
+	Rodrigues(rvec1, R1);
+	Rodrigues(rvec2, R2);
+
+	computeC2MC1(R1, tvec1, R2, tvec2, R_1to2, tvec_1to2);
+
+	//Mat normal = (Mat(3, 1, CV_64F, { 0,0,1 }));
+	Mat normal = (Mat_<double>(3, 1) << 0, 0, 1);
+
+	Mat normal1;
+	normal1 = R1 * normal;
+
+
+	Mat origin(3, 1, CV_64F, Scalar(0));
+	Mat origin1 = R1 * origin + tvec1;
+	double d_inv1 = 1.0 / normal1.dot(origin1);
+
+	Mat H, H_euclidian;
+	H_euclidian = computeHomography(R1, tvec1, d_inv1, normal1);
+
+
+	H = cameraMatrix * H_euclidian * cameraMatrix.inv();
+
+
+	//Mat H = findHomography(img1_pts, img2_pts);
+
+
+
+	Mat img_wrp, img_wrp2;
+
+	warpPerspective(image3, img_wrp2, H, image1.size());
+	//warpPerspective(image1, img_wrp, H, image1.size());
+
+	//imwrite("image_wrap.jpg", img_wrp);
+
+	namedWindow("display 1");
+	//namedWindow("display 2");
+
+	imshow("display 1", img_wrp2);
+	//imshow("display 2", img_wrp);
+
+	waitKey();
+	return 0;
+}
 
 int main()
 {
-	//homographyPlane1();
+	Mat image1, image2, image3;
+	image1 = imread("goodPictures/carton_1_pos1.jpg");
+	image2 = imread("goodPictures/carton_1_pos2.jpg");
+	image3 = imread("goodPictures/carton_3_pos1.jpg");
 
-	VideoCapture cap = VideoCapture(1);
-	Mat frame;
+	//cropping image2
+	Mat ROI(image2, Rect(0, 120, 640, 360));
+	ROI.copyTo(image2);
 
-	cap >> frame;
 
-	namedWindow("display");
-	imshow("display", frame);
+	//To make the homography and calculate dimensions of plan 1
+	//Because Homography is the same, you can keep the matrix for the boxes. Just initialize on the biggest Box
+
+	vector<Point2f> img1_pts;
+
+	namedWindow("select points");
+	setMouseCallback("select points", mouse_call, (void*)&img1_pts);
+
+	for (int i = 0; i < img1_pts.size(); i++)
+	{
+		//compute SizeL
+		//compute SizeH
+		//compute Sizel
+	}
+
+	imshow("select points", image3);
 	waitKey();
 
-	cout << "Execution complete" << endl;
+	cout << img1_pts;
 
-	//treat_and_display_with_no_transfo();
+	for (int i = 0; i < img1_pts.size(); i++)
+	{
+		circle(image3, img1_pts[i], 3, Scalar(0, 255, 0), 2);
+	}
+	
+	namedWindow("with points");
+	imshow("with points", image3);
+	waitKey();
 
+	vector<Point3f> objectPoints;
+	objectPoints.push_back(Point3f(0, 0, 0));
+	objectPoints.push_back(Point3f(39, 0, 0));
+	objectPoints.push_back(Point3f(0, 29.5, 0));
+	objectPoints.push_back(Point3f(39, 29.5, 0)); 
+	
 	return 0;
+	//treat_and_display_with_no_transfo();
 }
