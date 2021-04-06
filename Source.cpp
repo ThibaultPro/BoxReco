@@ -689,7 +689,6 @@ static void mouse_call(int event, int x, int y, int, void* param)
 
 		ptPtr->push_back(cv::Point2f(x, y));
 
-
 	}
 }
 
@@ -822,50 +821,91 @@ int findHomographyAndDisplay()
 
 int main()
 {
-	Mat image1, image2, image3;
-	image1 = imread("goodPictures/carton_1_pos1.jpg");
-	image2 = imread("goodPictures/carton_1_pos2.jpg");
-	image3 = imread("goodPictures/carton_3_pos1.jpg");
+	Mat image1, image2, image3, image4;
+	image1 = imread("goodPictures/carton_3_pos1.jpg");
+	image2 = imread("goodPictures/carton_3_pos2.jpg");
+	image3 = imread("goodPictures/carton_2_pos2.jpg");
+	image4 = imread("goodPictures/carton_2_pos1.jpg");
 
 	//cropping image2
 	Mat ROI(image2, Rect(0, 120, 640, 360));
 	ROI.copyTo(image2);
+
+	Mat ROI2(image3, Rect(0, 120, 640, 360));
+	ROI2.copyTo(image3);
 
 
 	//To make the homography and calculate dimensions of plan 1
 	//Because Homography is the same, you can keep the matrix for the boxes. Just initialize on the biggest Box
 
 	vector<Point2f> img1_pts;
+	vector<Point2f> img2_pts;
+	vector<Point2f> img3_pts;
 
-	namedWindow("select points");
-	setMouseCallback("select points", mouse_call, (void*)&img1_pts);
+	namedWindow("select points pos1");
+	setMouseCallback("select points pos1", mouse_call, (void*)&img1_pts);
 
-	for (int i = 0; i < img1_pts.size(); i++)
-	{
-		//compute SizeL
-		//compute SizeH
-		//compute Sizel
-	}
+	imshow("select points pos1", image1);
+	waitKey();
 
-	imshow("select points", image3);
+	namedWindow("select points pos2");
+	setMouseCallback("select points pos2", mouse_call, (void*)&img2_pts);
+
+	imshow("select points pos2", image2);
 	waitKey();
 
 	cout << img1_pts;
+	cout << img2_pts;
 
 	for (int i = 0; i < img1_pts.size(); i++)
 	{
-		circle(image3, img1_pts[i], 3, Scalar(0, 255, 0), 2);
+		circle(image1, img1_pts[i], 3, Scalar(0, 255, 0), 2);
 	}
+	for (int i = 0; i < img2_pts.size(); i++)
+	{
+		circle(image2, img2_pts[i], 3, Scalar(0, 255, 0), 2);
+	}
+
+	namedWindow("with points pos1");
+	namedWindow("with points pos2");
+
+	imshow("with points pos1", image1);
+
+	imshow("with points pos2", image2);
+	waitKey();
 	
-	namedWindow("with points");
-	imshow("with points", image3);
+	Mat H = findHomography(img2_pts, img1_pts);
+
+	cv::FileStorage file("homography2to1.xml", cv::FileStorage::WRITE);
+	file << "H" << H;
+	file.release();
+
+
+	namedWindow("add points");
+	setMouseCallback("add points", mouse_call, (void*)&img3_pts);
+	imshow("add points", image3);
 	waitKey();
 
-	vector<Point3f> objectPoints;
-	objectPoints.push_back(Point3f(0, 0, 0));
-	objectPoints.push_back(Point3f(39, 0, 0));
-	objectPoints.push_back(Point3f(0, 29.5, 0));
-	objectPoints.push_back(Point3f(39, 29.5, 0)); 
+	for (int i = 0; i < img3_pts.size(); i++)
+	{
+		circle(image3, img3_pts[i], 3, Scalar(0, 0, 255), 2);
+		Mat pt1 = (Mat_<double>(3, 1) << img3_pts[i].x, img3_pts[i].y, 1);
+		Mat pt2 = H * pt1;
+		pt2 /= pt2.at<double>(2);
+		Point2f end((int)(pt2.at<double>(0)), (int)pt2.at<double>(1));
+		cout << end;
+		circle(image4, end, 3, Scalar(0, 0, 255), 2);
+	}
+	namedWindow("added points");
+	imshow("added points", image3);
+	waitKey();
+
+	namedWindow("result");
+	imshow("result", image4);
+	waitKey();
+
+
+
 	
 	return 0;
 	//treat_and_display_with_no_transfo();
