@@ -1,7 +1,7 @@
 ﻿  Source.cpp
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(238,42): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(238,66): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(238,76): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(238,42): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(238,66): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(238,76): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
           with
           [
               _Tp=int
@@ -10,7 +10,7 @@ C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(238,76): warning C4244: '
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(238,52): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(238,52): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
           with
           [
               _Tp=int
@@ -19,9 +19,9 @@ C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(238,52): warning C4244: '
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(239,42): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(239,66): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(239,76): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(239,42): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(239,66): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(239,76): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
           with
           [
               _Tp=int
@@ -30,7 +30,7 @@ C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(239,76): warning C4244: '
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(239,52): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(239,52): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
           with
           [
               _Tp=int
@@ -39,9 +39,9 @@ C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(239,52): warning C4244: '
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(241,42): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(241,66): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(241,76): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(241,42): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(241,66): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(241,76): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
           with
           [
               _Tp=int
@@ -50,7 +50,7 @@ C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(241,76): warning C4244: '
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(241,52): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(241,52): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
           with
           [
               _Tp=int
@@ -59,9 +59,9 @@ C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(241,52): warning C4244: '
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(242,42): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(242,66): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(242,76): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(242,42): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(242,66): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(242,76): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
           with
           [
               _Tp=int
@@ -70,7 +70,7 @@ C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(242,76): warning C4244: '
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(242,52): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(242,52): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
           with
           [
               _Tp=int
@@ -79,9 +79,9 @@ C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(242,52): warning C4244: '
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(243,42): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(243,66): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(243,76): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(243,42): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(243,66): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(243,76): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
           with
           [
               _Tp=int
@@ -90,7 +90,7 @@ C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(243,76): warning C4244: '
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(243,52): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(243,52): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
           with
           [
               _Tp=int
@@ -99,9 +99,9 @@ C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(243,52): warning C4244: '
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(244,42): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(244,66): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(244,76): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(244,42): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(244,66): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(244,76): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
           with
           [
               _Tp=int
@@ -110,7 +110,7 @@ C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(244,76): warning C4244: '
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(244,52): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(244,52): warning C4244: 'argument' : conversion de '_Tp' en '_Tp', perte possible de données
           with
           [
               _Tp=int
@@ -119,37 +119,67 @@ C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(244,52): warning C4244: '
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(306,39): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(306,94): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(310,39): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(310,94): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(316,34): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(317,34): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(318,34): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(319,34): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(690,35): warning C4244: 'argument' : conversion de 'int' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(306,39): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(306,94): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(310,39): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(310,94): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(316,34): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(317,34): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(318,34): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(319,34): warning C4244: 'argument' : conversion de 'double' en 'const unsigned __int64', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(690,35): warning C4244: 'argument' : conversion de 'int' en '_Tp', perte possible de données
           with
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(690,32): warning C4244: 'argument' : conversion de 'int' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(690,32): warning C4244: 'argument' : conversion de 'int' en '_Tp', perte possible de données
           with
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(895,60): warning C4244: 'argument' : conversion de 'int' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(888,60): warning C4244: 'argument' : conversion de 'int' en '_Tp', perte possible de données
           with
           [
               _Tp=float
           ]
-C:\Users\francoise\source\repos\PFE\BoxReco\Source.cpp(895,35): warning C4244: 'argument' : conversion de 'int' en '_Tp', perte possible de données
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(888,35): warning C4244: 'argument' : conversion de 'int' en '_Tp', perte possible de données
+          with
+          [
+              _Tp=float
+          ]
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(1256,60): warning C4244: 'argument' : conversion de 'int' en '_Tp', perte possible de données
+          with
+          [
+              _Tp=float
+          ]
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(1256,35): warning C4244: 'argument' : conversion de 'int' en '_Tp', perte possible de données
+          with
+          [
+              _Tp=float
+          ]
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(1313,32): warning C4244: 'argument' : conversion de 'double' en '_Tp', perte possible de données
+          with
+          [
+              _Tp=float
+          ]
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(1314,38): warning C4244: 'argument' : conversion de 'double' en '_Tp', perte possible de données
+          with
+          [
+              _Tp=float
+          ]
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(1315,40): warning C4244: 'argument' : conversion de 'double' en '_Tp', perte possible de données
+          with
+          [
+              _Tp=float
+          ]
+C:\Users\User\source\repos\PFE\ProjetFinEtudes\Source.cpp(1315,32): warning C4244: 'argument' : conversion de 'double' en '_Tp', perte possible de données
           with
           [
               _Tp=float
           ]
   Génération de code en cours
-  1 of 342 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  2 of 323 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     0 functions had inline decision re-evaluated but remain unchanged
   Fin de la génération du code
-  ProjetFinEtudes.vcxproj -> C:\Users\francoise\source\repos\PFE\BoxReco\x64\Release\ProjetFinEtudes.exe
+  ProjetFinEtudes.vcxproj -> C:\Users\User\source\repos\PFE\ProjetFinEtudes\x64\Release\ProjetFinEtudes.exe

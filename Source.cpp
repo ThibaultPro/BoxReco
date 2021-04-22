@@ -430,7 +430,6 @@ int treat_and_display_with_transfo()
 
 	fillPoly(dest1, contours[indexMax], Scalar(255, 255, 255));
 
-
 	drawContours(dest2, cnts, 0, Scalar(0, 0, 255), 5);
 
 	//cornerHarris(dest2, corners, 2, 3, 0.04);
@@ -682,6 +681,7 @@ int homograpyPlane2()
 
 	return 0;
 }
+
 static void mouse_call(int event, int x, int y, int, void* param)
 {
 	if (event == cv::EVENT_LBUTTONDOWN) {
@@ -691,7 +691,6 @@ static void mouse_call(int event, int x, int y, int, void* param)
 
 	}
 }
-
 
 Mat computeHomography(const Mat& R_1to2, const Mat& tvec_1to2, const double d_inv, const Mat& normal)
 {
@@ -710,7 +709,6 @@ int findHomographyAndDisplay()
 	//cropping image2
 	Mat ROI(image2, Rect(0, 120, 640, 360));
 	ROI.copyTo(image2);
-
 
 	//To make the homography and calculate dimensions of plan 1
 	//Because Homography is the same, you can keep the matrix for the boxes. Just initialize on the biggest Box.
@@ -757,9 +755,6 @@ int findHomographyAndDisplay()
 
 	fs["Distortion_Coefficients"] >> distCoeffs;
 
-
-
-
 	vector<Point3f> objectPoints;
 	objectPoints.push_back(Point3f(0, 0, 0));
 	objectPoints.push_back(Point3f(39, 0, 0));
@@ -786,7 +781,6 @@ int findHomographyAndDisplay()
 	Mat normal1;
 	normal1 = R1 * normal;
 
-
 	Mat origin(3, 1, CV_64F, Scalar(0));
 	Mat origin1 = R1 * origin + tvec1;
 	double d_inv1 = 1.0 / normal1.dot(origin1);
@@ -794,13 +788,9 @@ int findHomographyAndDisplay()
 	Mat H, H_euclidian;
 	H_euclidian = computeHomography(R1, tvec1, d_inv1, normal1);
 
-
 	H = cameraMatrix * H_euclidian * cameraMatrix.inv();
 
-
 	//Mat H = findHomography(img1_pts, img2_pts);
-
-
 
 	Mat img_wrp, img_wrp2;
 
@@ -819,7 +809,7 @@ int findHomographyAndDisplay()
 	return 0;
 }
 
-int main()
+int Homography1to2()
 {
 	Mat image1, image2, image3, image4;
 	image1 = imread("goodPictures/carton_3_pos1.jpg");
@@ -873,19 +863,22 @@ int main()
 
 	imshow("with points pos2", image2);
 	waitKey();
-	
+
 	Mat H = findHomography(img2_pts, img1_pts);
+
+	cout << H;
 
 	cv::FileStorage file("homography2to1.xml", cv::FileStorage::WRITE);
 	file << "H" << H;
 	file.release();
-
 
 	namedWindow("add points");
 	setMouseCallback("add points", mouse_call, (void*)&img3_pts);
 	imshow("add points", image3);
 	waitKey();
 
+	cout << img3_pts;
+	cout << endl;
 	for (int i = 0; i < img3_pts.size(); i++)
 	{
 		circle(image3, img3_pts[i], 3, Scalar(0, 0, 255), 2);
@@ -896,6 +889,8 @@ int main()
 		cout << end;
 		circle(image4, end, 3, Scalar(0, 0, 255), 2);
 	}
+
+	cout << endl;
 	namedWindow("added points");
 	imshow("added points", image3);
 	waitKey();
@@ -904,9 +899,442 @@ int main()
 	imshow("result", image4);
 	waitKey();
 
-
-
-	
 	return 0;
-	//treat_and_display_with_no_transfo();
 }
+
+int HomographyDistance()
+{
+	Mat image1, image2, image3, image4;
+	image1 = imread("goodPictures/carton_9_pos1.jpg");
+	//image2 = imread("goodPictures/carton_3_pos2.jpg");
+	//image3 = imread("goodPictures/carton_2_pos2.jpg");
+	//image4 = imread("goodPictures/carton_2_pos1.jpg");
+
+	//cropping image2
+	/**
+	Mat ROI(image2, Rect(0, 120, 640, 360));
+	ROI.copyTo(image2);
+
+	Mat ROI2(image3, Rect(0, 120, 640, 360));
+	ROI2.copyTo(image3);
+	**/
+
+	//To make the homography and calculate dimensions of plan 1
+	//Because Homography is the same, you can keep the matrix for the boxes. Just initialize on the biggest Box
+
+	vector<Point2f> img1_pts;
+	vector<Point2f> img2_pts;
+	vector<Point3f> obj_pts;
+	img2_pts.push_back(Point2f(0, 360));
+	img2_pts.push_back(Point2f(61, 360));
+	img2_pts.push_back(Point2f(0, 360 - 57));
+	img2_pts.push_back(Point2f(61, 360 - 57));
+
+	obj_pts.push_back(Point3f(0, 0, 0));
+	obj_pts.push_back(Point3f(30.5, 0, 0));
+	obj_pts.push_back(Point3f(0, 28.5, 0));
+	obj_pts.push_back(Point3f(30.5, 28.5, 0));
+
+	/**
+	works carton 3
+		img2_pts.push_back(Point2f(29, 360 -10));
+	img2_pts.push_back(Point2f(58, 360-10));
+	img2_pts.push_back(Point2f(29, 360 - 50));
+	img2_pts.push_back(Point2f(58, 360 - 50));
+
+	obj_pts.push_back(Point3f(0, 0, 0));
+	obj_pts.push_back(Point3f(58, 0, 0));
+	obj_pts.push_back(Point3f(0, 40, 0));
+	obj_pts.push_back(Point3f(58, 40, 0));
+	**/
+ 
+	namedWindow("select points pos1");
+	setMouseCallback("select points pos1", mouse_call, (void*)&img1_pts);
+
+	imshow("select points pos1", image1);
+	waitKey();
+	cout << img1_pts;
+
+	for (int i = 0; i < img1_pts.size(); i++)
+	{
+		circle(image1, img1_pts[i], 3, Scalar(0, 255, 0), 2);
+	}
+
+	namedWindow("with points pos1");
+
+	imshow("with points pos1", image1);
+
+	waitKey();
+
+	FileStorage fs1("out_camera_pos1_data.xml", FileStorage::READ);
+	FileStorage fs2("out_camera_pos2_data.xml", FileStorage::READ);
+
+	if (fs1.isOpened() && fs2.isOpened())
+	{
+		cout << "Files are opened\n";
+	}
+	Mat cameraMatrix1, distCoeffs1, cameraMatrix2, distCoeffs2;
+
+	fs1["Camera_Matrix"] >> cameraMatrix1;
+	fs2["Camera_Matrix"] >> cameraMatrix2;
+
+	fs1["Distortion_Coefficients"] >> distCoeffs1;
+	fs2["Distortion_Coefficients"] >> distCoeffs2;
+
+	Mat rvec1, tvec1;
+	solvePnP(obj_pts, img1_pts, cameraMatrix1, distCoeffs1, rvec1, tvec1);
+	Mat rvec2, tvec2;
+	solvePnP(obj_pts, img2_pts, cameraMatrix2, distCoeffs2, rvec2, tvec2);
+
+	Mat R1, R2, R_1to2, tvec_1to2;
+	Rodrigues(rvec1, R1);
+	Rodrigues(rvec2, R2);
+
+	computeC2MC1(R1, tvec1, R2, tvec2, R_1to2, tvec_1to2);
+
+	//Mat normal = (Mat(3, 1, CV_64F, { 0,0,1 }));
+	Mat normal = (Mat_<double>(3, 1) << 0, 0, 1);
+
+	Mat normal1;
+	normal1 = R1 * normal;
+
+	Mat origin(3, 1, CV_64F, Scalar(0));
+	Mat origin1 = R1 * origin + tvec1;
+	double d_inv1 = 1.0 / normal1.dot(origin1);
+
+	Mat H, H_euclidian;
+	H_euclidian = computeHomography(R_1to2, tvec_1to2, d_inv1, normal1);
+
+	Mat cameraMatrix;
+	cameraMatrix = (cameraMatrix1 + cameraMatrix2) / 2;
+
+	H = cameraMatrix * H_euclidian * cameraMatrix.inv();
+
+	//Mat H = findHomography(img1_pts, img2_pts);
+
+	Mat img_wrp, img_wrp2;
+
+	warpPerspective(image1, img_wrp2, H, image1.size());
+	//warpPerspective(image1, img_wrp, H, image1.size());
+
+	//imwrite("image_wrap.jpg", img_wrp);
+
+	namedWindow("display 1");
+	//namedWindow("display 2");
+
+	imshow("display 1", img_wrp2);
+
+	waitKey();
+
+	return 0;
+}
+
+int HomographyPlan2()
+{
+	Mat image1, image2, image3, image4;
+	image1 = imread("goodPictures/carton_9_pos1.jpg");
+	//image2 = imread("goodPictures/carton_3_pos2.jpg");
+	//image3 = imread("goodPictures/carton_2_pos2.jpg");
+	image2 = imread("goodPictures/carton_2_pos1.jpg");
+
+	//cropping image2
+	/**
+	Mat ROI(image2, Rect(0, 120, 640, 360));
+	ROI.copyTo(image2);
+
+	Mat ROI2(image3, Rect(0, 120, 640, 360));
+	ROI2.copyTo(image3);
+	**/
+
+	//To make the homography and calculate dimensions of plan 1
+	//Because Homography is the same, you can keep the matrix for the boxes. Just initialize on the biggest Box
+
+	vector<Point2f> img1_pts;
+	vector<Point2f> img2_pts;
+	vector<Point3f> obj_pts;
+	img2_pts.push_back(Point2f(0, 360 - 4.5));
+	img2_pts.push_back(Point2f(81, 360));
+	img2_pts.push_back(Point2f(0, 360 - 57));
+	img2_pts.push_back(Point2f(81, 360 - 57));
+
+	obj_pts.push_back(Point3f(0, 4.5, 11));
+	obj_pts.push_back(Point3f(40.5, 0, 11));
+	obj_pts.push_back(Point3f(0, 28.5, 11));
+	obj_pts.push_back(Point3f(40.5, 28.5, 11));
+
+	/**
+	works carton 3
+	img2_pts.push_back(Point2f(29, 360 -10));
+	img2_pts.push_back(Point2f(58, 360-10));
+	img2_pts.push_back(Point2f(29, 360 - 50));
+	img2_pts.push_back(Point2f(58, 360 - 50));
+
+	obj_pts.push_back(Point3f(0, 0, 0));
+	obj_pts.push_back(Point3f(58, 0, 0));
+	obj_pts.push_back(Point3f(0, 40, 0));
+	obj_pts.push_back(Point3f(58, 40, 0));
+	**/
+
+	namedWindow("select points pos1");
+	setMouseCallback("select points pos1", mouse_call, (void*)&img1_pts);
+
+	imshow("select points pos1", image1);
+	waitKey();
+
+	for (int i = 0; i < img1_pts.size(); i++)
+	{
+		circle(image1, img1_pts[i], 3, Scalar(0, 255, 0), 2);
+		cout << img1_pts[i] << endl;
+	}
+
+	namedWindow("with points pos1");
+
+	imshow("with points pos1", image1);
+
+	waitKey();
+
+	FileStorage fs1("out_camera_pos1_datamore.xml", FileStorage::READ);
+	FileStorage fs2("out_camera_pos2_data.xml", FileStorage::READ);
+
+	if (fs1.isOpened() && fs2.isOpened())
+	{
+		cout << "Files are opened\n";
+	}
+	Mat cameraMatrix1, distCoeffs1, cameraMatrix2, distCoeffs2;
+
+	fs1["Camera_Matrix"] >> cameraMatrix1;
+	fs2["Camera_Matrix"] >> cameraMatrix2;
+
+	fs1["Distortion_Coefficients"] >> distCoeffs1;
+	fs2["Distortion_Coefficients"] >> distCoeffs2;
+
+	Mat rvec1, tvec1;
+	solvePnP(obj_pts, img1_pts, cameraMatrix1, distCoeffs1, rvec1, tvec1);
+	Mat rvec2, tvec2;
+	solvePnP(obj_pts, img2_pts, cameraMatrix1, distCoeffs1, rvec2, tvec2);
+
+	Mat R1, R2, R_1to2, tvec_1to2;
+	Rodrigues(rvec1, R1);
+	Rodrigues(rvec2, R2);
+
+	computeC2MC1(R1, tvec1, R2, tvec2, R_1to2, tvec_1to2);
+
+	//Mat normal = (Mat(3, 1, CV_64F, { 0,0,1 }));
+	Mat normal = (Mat_<double>(3, 1) << 0, 0, 1);
+
+	Mat normal1;
+	normal1 = R1 * normal;
+
+	Mat origin(3, 1, CV_64F, Scalar(0));
+	Mat origin1 = R1 * origin + tvec1;
+	double d_inv1 = 1.0 / normal1.dot(origin1);
+
+	Mat H, H_euclidian;
+	H_euclidian = computeHomography(R_1to2, tvec_1to2, d_inv1, normal1);
+
+	Mat cameraMatrix;
+	cameraMatrix = (cameraMatrix1 + cameraMatrix2) / 2;
+
+	H = cameraMatrix1 * H_euclidian * cameraMatrix1.inv();
+
+	/**
+	vector<Point2f> img2_pts;
+	//calcul de homographie avec les points du plan, selectionner les points sur carton 2 et reporter grâce à l'homographie dans le plan
+	namedWindow("select points carton2");
+	setMouseCallback("select points carton2", mouse_call, (void*)&img2_pts);
+
+	imshow("select points carton2", image2);
+	waitKey();
+	cout << img2_pts;
+
+	for (int i = 0; i < img2_pts.size(); i++)
+	{
+		circle(image1, img2_pts[i], 3, Scalar(0, 255, 0), 2);
+	}
+
+	namedWindow("with points carton2");
+
+	imshow("with points carton2", image2);
+
+	waitKey();
+	Mat pt1 = (Mat_<double>(3, 1) << img1_pts[1].x, img1_pts[1].y, 1);
+
+	Mat pt2 = H * pt1;
+	pt2 /= pt2.at<double>(2);
+	Point2f end((int)(pt2.at<double>(0)), (int)pt2.at<double>(1));
+	cout << end;
+	**/
+	//Mat H = findHomography(img1_pts, img2_pts);
+
+	Mat img_wrp, img_wrp2;
+
+	warpPerspective(image2, img_wrp2, H, image2.size());
+	//warpPerspective(image1, img_wrp, H, image1.size());
+
+	//imwrite("image_wrap.jpg", img_wrp);
+
+	namedWindow("display 1");
+	//namedWindow("display 2");
+
+	imshow("display 1", img_wrp2);
+
+	waitKey();
+
+	return 0;
+}
+
+int calculateHomography1to2Mean()
+{
+	Mat image1, image2, image3, image4;
+	Mat m_Homography = Mat::zeros(Size(3, 3), CV_64F);
+
+	vector<Point2f> img1_pts;
+	vector<Point2f> img2_pts;
+	vector<Point2f> img3_pts;
+	vector<Point2f> img4_pts;
+	String w1name;
+	String w2name;
+
+	for (int i = 1; i < 9; i++)
+	{
+		if (i != 6)
+		{
+			String file1 = "goodPictures/carton_" + to_string(i) + "_pos1.jpg";
+			String file2 = "goodPictures/carton_" + to_string(i) + "_pos2.jpg";
+			image1 = imread(file1);
+			image2 = imread(file2);
+
+			//cropping image2
+			Mat ROI(image2, Rect(0, 120, 640, 360));
+			ROI.copyTo(image2);
+			Mat H_temp = Mat::zeros(Size(3, 3), CV_64F);
+
+			w1name = "image n° " + to_string(i) + "select points pos1";
+			namedWindow(w1name);
+			setMouseCallback(w1name, mouse_call, (void*)&img1_pts);
+
+			imshow(w1name, image1);
+			waitKey();
+
+			w2name = "image n° " + to_string(i) + "select points pos2";
+			namedWindow(w2name);
+			setMouseCallback(w2name, mouse_call, (void*)&img2_pts);
+
+			imshow(w2name, image2);
+			waitKey();
+
+			H_temp = findHomography(img2_pts, img1_pts);
+			add(H_temp, m_Homography, m_Homography);
+		}
+	}
+	m_Homography /= 8;
+
+	image3 = imread("goodPictures/carton_3_pos2.jpg");
+	image4 = imread("goodPictures/carton_3_pos1.jpg");
+
+	Mat ROI2(image3, Rect(0, 120, 640, 360));
+	ROI2.copyTo(image3);
+
+	//To make the homography and calculate dimensions of plan 1
+	//Because Homography is the same, you can keep the matrix for the boxes. Just initialize on the biggest Box
+
+	cv::FileStorage file("homographyMean2to1.xml", cv::FileStorage::WRITE);
+	file << "H_mean" << m_Homography;
+	file.release();
+
+	namedWindow("add points");
+	setMouseCallback("add points", mouse_call, (void*)&img3_pts);
+	imshow("add points", image3);
+	waitKey();
+
+	for (int i = 0; i < img3_pts.size(); i++)
+	{
+		circle(image3, img3_pts[i], 3, Scalar(0, 0, 255), 2);
+		Mat pt1 = (Mat_<double>(3, 1) << img3_pts[i].x, img3_pts[i].y, 1);
+		Mat pt2 = m_Homography * pt1;
+		pt2 /= pt2.at<double>(2);
+		Point2f end((int)(pt2.at<double>(0)), (int)pt2.at<double>(1));
+		circle(image4, end, 3, Scalar(0, 0, 255), 2);
+	}
+
+	cout << endl;
+	namedWindow("added points");
+	imshow("added points", image3);
+	waitKey();
+
+	namedWindow("result");
+	imshow("result", image4);
+	waitKey();
+
+	return 0;
+}
+
+int main()
+{
+	Mat image1, image2, image3, image4;
+	Mat m_Homography = Mat::zeros(Size(3, 3), CV_64F);
+
+	vector<Point2f> img1_pts;
+	vector<Point2f> img2_pts;
+	vector<Point2f> img3_pts;
+	vector<Point2f> img4_pts;
+	String w1name;
+	String w2name;
+
+	for (int i = 1; i < 8; i++)
+	{
+		if (i != 6)
+		{
+			String file1 = "goodPictures/carton_" + to_string(i) + "_pos2.jpg";
+			image1 = imread(file1);
+
+			Mat ROI2(image1, Rect(0, 120, 640, 360));
+			ROI2.copyTo(image1);
+
+			w1name = "image n° " + to_string(i) + "select points pos2";
+			namedWindow(w1name);
+			setMouseCallback(w1name, mouse_call, (void*)&img1_pts);
+
+			imshow(w1name, image1);
+			waitKey();
+
+			double l, h;
+			Mat H_temp = Mat::zeros(Size(3, 3), CV_64F);
+
+			cout << "carton n°" + to_string(i) + " : " << endl;
+			cout << "l : ";
+			cin >> l;
+			cout << endl;
+			cout << "H :";
+			cin >> h;
+			cout << endl;
+
+			img2_pts.push_back(Point2f(0, 360));
+			img2_pts.push_back(Point2f(4*l, 360));
+			img2_pts.push_back(Point2f(0, 360 - 4*h));
+			img2_pts.push_back(Point2f(4*l, 360 - 4*h));
+
+			H_temp = findHomography(img1_pts, img2_pts);
+			add(H_temp, m_Homography, m_Homography);
+		}
+	}
+	m_Homography /= 6;
+
+	image4 = imread("goodPictures/carton_3_pos2.jpg");
+
+	//To make the homography and calculate dimensions of plan 1
+	//Because Homography is the same, you can keep the matrix for the boxes. Just initialize on the biggest Box
+
+	cv::FileStorage file("Hv1_2_mean.xml", cv::FileStorage::WRITE);
+	file << "H_mean" << m_Homography;
+	file.release();
+
+	warpPerspective(image4, image3, m_Homography, image4.size());
+
+	namedWindow("result");
+	imshow("result", image3);
+	waitKey();
+
+	return 0;
+}
+

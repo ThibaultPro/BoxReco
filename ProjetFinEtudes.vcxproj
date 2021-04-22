@@ -130,14 +130,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\francoise\librairies\OpenCV450-VS2019x64\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\User\librairies\OpenCV450-VS2019x64(1)\OpenCV450-VS2019x64\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\francoise\librairies\OpenCV450-VS2019x64\lib</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\User\librairies\OpenCV450-VS2019x64(1)\OpenCV450-VS2019x64\lib</AdditionalLibraryDirectories>
       <AdditionalDependencies>opencv_core450.lib;opencv_dnn_objdetect450.lib;opencv_dnn450.lib;opencv_features2d450.lib;opencv_highgui450.lib;opencv_imgcodecs450.lib;opencv_imgproc450.lib;opencv_optflow450.lib;opencv_tracking450.lib;opencv_videoio450.lib;opencv_video450.lib;opencv_calib3d450.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
